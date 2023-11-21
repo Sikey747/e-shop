@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { useClickAway } from "@uidotdev/usehooks";
+import { useRef, useState } from "react";
+// import { useClickAway } from "@uidotdev/usehooks";
 import { signOut } from "next-auth/react";
 import { Avatar, Divider } from "@mui/material";
+import { useClickAway } from "react-use";
 
 interface UserMenuProps {
   userName?: string | null;
@@ -15,9 +16,14 @@ export default function UserMenu({ userName, userImag }: UserMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isAuth, setIsAuth] = useState(userName);
 
-  const ref = useClickAway(() => {
-    setIsOpen(false);
+  // const ref = useClickAway(() => {
+  //   setIsOpen(false);
+  // });
+  const ref = useRef(null);
+  useClickAway(ref, () => {
+     setIsOpen(false);
   });
+
   return (
     <>
       <div
