@@ -8,7 +8,7 @@ import { Avatar, Divider } from "@mui/material";
 
 interface UserMenuProps {
   userName?: string | null;
-  userImag?: string | null | undefined;
+  userImag?: string ;
 }
 
 export default function UserMenu({ userName, userImag }: UserMenuProps) {
