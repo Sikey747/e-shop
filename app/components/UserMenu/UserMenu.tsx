@@ -8,7 +8,7 @@ import { Avatar, Divider } from "@mui/material";
 
 interface UserMenuProps {
   userName?: string | null;
-  userImag?: string ;
+  userImag?: string | null;
 }
 
 export default function UserMenu({ userName, userImag }: UserMenuProps) {
@@ -21,11 +21,11 @@ export default function UserMenu({ userName, userImag }: UserMenuProps) {
   return (
     <>
       <div
-        className="hover:cursor-pointer relative flex items-center justify-center gap-2"
+        className="relative flex items-center justify-center gap-2 hover:cursor-pointer"
         ref={ref}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Avatar src={userImag}/>
+        {userImag !== null ? <Avatar src={userImag} /> : <Avatar />}
         {userName ? <h2 className="text-lg">{userName}</h2> : ""}
         {isOpen && (
           <ul className="absolute right-0 top-[120%] flex w-fit w-full min-w-fit flex-col gap-4 rounded-xl bg-slate-500 p-3 text-lg text-white shadow-sm transition-all">
@@ -33,9 +33,7 @@ export default function UserMenu({ userName, userImag }: UserMenuProps) {
               <Link href={"/shopCard"}>You orders</Link>
             </li>
             <Divider className="bg-white" />
-            {isAuth 
-            ? 
-            (
+            {isAuth ? (
               <li>
                 <button
                   onClick={() => {
